@@ -548,10 +548,10 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'gsb_feature_slideshow',
+          'label' => 'hidden',
+          'module' => 'gsb_feature_slideshow_fpp',
           'settings' => array(
-            'view_mode' => 'full',
+            'view_mode' => 'gsb_slideshow',
           ),
           'type' => 'gsb_slideshow_default_format',
           'weight' => '0',
