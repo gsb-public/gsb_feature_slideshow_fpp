@@ -31,6 +31,13 @@ function gsb_feature_slideshow_fpp_entity_info_alter(&$entity_info) {
     ),
   );
 
+  // create the slide show view mode
+
+  $entity_info['file']['view modes']['gsb_slideshow'] = array(
+    'label' => t('GSB Slideshow'),
+    'custom settings' => TRUE,
+  );
+
 }
 
 /**
@@ -236,7 +243,7 @@ function theme_gsb_slideshow_fpp_view($variables) {
   }
 
   $class = 'panopoly-spotlight-wrapper ' . $button_style;
-  $class .= (empty($variables['item']['fid'])) ? " no-image" : "";
+  $class .= (empty($items->field_image_or_video['und'][0]['fid'])) ? " no-image" : "";
   $output .= '<div class="' . $class . '">';
 
   $output .= '<div class="panopoly-spotlight-info">';
