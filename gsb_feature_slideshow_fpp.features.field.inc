@@ -77,7 +77,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_select',
-        'weight' => '5',
+        'weight' => '6',
       ),
       'workbench_access_field' => 0,
     ),
@@ -159,7 +159,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '4',
+        'weight' => '5',
       ),
       'workbench_access_field' => 0,
     ),
@@ -241,7 +241,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '3',
+        'weight' => '4',
       ),
       'workbench_access_field' => 0,
     ),
@@ -352,7 +352,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '2',
+        'weight' => '3',
       ),
       'workbench_access_field' => 0,
     ),
@@ -434,7 +434,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => '2',
       ),
       'workbench_access_field' => 0,
     ),
@@ -516,6 +516,82 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
+        'weight' => '1',
+      ),
+      'workbench_access_field' => 0,
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_gsb_slideshow-field_slideshow_type'.
+  $fields['field_collection_item-field_gsb_slideshow-field_slideshow_type'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_slideshow_type',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'homepage-slider' => 'Home Page',
+          'standard-slider' => 'Typical Page',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_gsb_slideshow',
+      'default_value' => array(
+        0 => array(
+          'value' => 'standard-slider',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 6,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'tiny' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_slideshow_type',
+      'label' => 'Slideshow Type',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
+        'type' => 'options_buttons',
         'weight' => '0',
       ),
       'workbench_access_field' => 0,
@@ -592,6 +668,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
   t('Image or Video');
   t('Slide Link');
   t('Slide Title');
+  t('Slideshow Type');
 
   return $fields;
 }

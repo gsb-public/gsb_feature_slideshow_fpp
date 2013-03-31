@@ -59,6 +59,37 @@ function gsb_feature_slideshow_fpp_init() {
   drupal_add_js(drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/gsb_feature_slideshow_fpp.js', array('scope' => 'footer'));
 }
 
+/**
+ * Implements hook_form_alter()
+ */
+function gsb_feature_slideshow_fpp_form_alter(&$form, &$form_state, $form_id) {
+
+  if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form' && $form['#bundle'] == 'gsb_slideshow_fpp') {
+
+    foreach ($form['field_gsb_slideshow']['und'] as $key => &$value) {
+      if (!is_int($key)) {
+        continue;
+      }
+      $form['field_gsb_slideshow']['und'][$key]['field_button_style']['#states'] = array(
+        'visible' => array(
+          ':input[name="field_gsb_slideshow[und][0][field_slideshow_type][und]"]' => array(
+            array('value' => 'standard-slider'),
+          ),
+        ),
+      );
+      $form['field_gsb_slideshow']['und'][$key]['field_button_text']['#states'] = array(
+        'visible' => array(
+          ':input[name="field_gsb_slideshow[und][0][field_slideshow_type][und]"]' => array(
+            array('value' => 'standard-slider'),
+          ),
+        ),
+      );
+    }
+
+  }
+
+}
+
 // Formatter
 
 /**
