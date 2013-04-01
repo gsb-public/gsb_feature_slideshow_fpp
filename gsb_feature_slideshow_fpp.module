@@ -227,6 +227,7 @@ function theme_gsb_slideshow_fpp_view($variables) {
 
   if (is_array($items->field_image_or_video)) {
 
+    //$image = file_view((object) $items->field_image_or_video['und'][0], 'gsb_slideshow');
     $image = file_view((object) $items->field_image_or_video['und'][0], 'gsb_slideshow');
 
     $type = $items->field_image_or_video['und'][0]['type'];
