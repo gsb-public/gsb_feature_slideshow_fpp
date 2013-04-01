@@ -11,7 +11,7 @@ Drupal.settings.gsb_slideshow_settings = Drupal.settings.gsb_slideshow_settings 
           activeClass = 'active',
           windowhash = parseInt(window.location.hash.replace( /^\D+/g, ''));
 
-      $('.field-type-gsb-slideshow').each(function() {
+      $('.field-name-field-gsb-slideshow').each(function() {
         var $this = $(this);
 
         if (!$this.hasClass('slideshow-processed')) {
