@@ -598,8 +598,8 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
     ),
   );
 
-  // Exported field: 'fieldable_panels_pane-gsb_slideshow_fpp-field_gsb_slideshow'.
-  $fields['fieldable_panels_pane-gsb_slideshow_fpp-field_gsb_slideshow'] = array(
+  // Exported field: 'fieldable_panels_pane-slideshow-field_gsb_slideshow'.
+  $fields['fieldable_panels_pane-slideshow-field_gsb_slideshow'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -618,7 +618,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
       'type' => 'field_collection',
     ),
     'field_instance' => array(
-      'bundle' => 'gsb_slideshow_fpp',
+      'bundle' => 'slideshow',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',

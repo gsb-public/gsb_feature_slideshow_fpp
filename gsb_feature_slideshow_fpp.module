@@ -10,14 +10,14 @@ include_once 'gsb_feature_slideshow_fpp.features.inc';
  * Implements hook_entity_info_alter().
  *
  * Here we tell Drupal about our custom fpp -
- * 'gsb_slideshow_fpp'.
+ * 'slideshow'.
  *
  */
 function gsb_feature_slideshow_fpp_entity_info_alter(&$entity_info) {
 
   // create the GSB Slideshow FPP
 
-  $entity_info['fieldable_panels_pane']['bundles']['gsb_slideshow_fpp'] = array(
+  $entity_info['fieldable_panels_pane']['bundles']['slideshow'] = array(
     'label' => t('Add GSB Slideshow'),
     'pane category' => t('GSB Slideshow FPP'),
     'pane top level' => TRUE, // set to true to make this show as a top level icon
@@ -64,7 +64,7 @@ function gsb_feature_slideshow_fpp_init() {
  */
 function gsb_feature_slideshow_fpp_form_alter(&$form, &$form_state, $form_id) {
 
-  if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form' && $form['#bundle'] == 'gsb_slideshow_fpp') {
+  if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form' && $form['#bundle'] == 'slideshow') {
 
     foreach ($form['field_gsb_slideshow']['und'] as $key => &$value) {
       if (!is_int($key)) {
@@ -133,8 +133,8 @@ function gsb_feature_slideshow_fpp_field_formatter_view($entity_type, $entity, $
     if ($field_collection = field_collection_field_get_entity($item_data)) {
       $element[$delta]['#markup'] = ($delta == 0) ?
         $header .
-        theme('gsb_slideshow_fpp_view', array('items' => $field_collection, 'delta' => $delta, 'settings' => $settings)) :
-        theme('gsb_slideshow_fpp_view', array('items' => $field_collection, 'delta' => $delta, 'settings' => $settings));
+        theme('slideshow_view', array('items' => $field_collection, 'delta' => $delta, 'settings' => $settings)) :
+        theme('slideshow_view', array('items' => $field_collection, 'delta' => $delta, 'settings' => $settings));
     }
   }
 
@@ -186,7 +186,7 @@ function gsb_feature_slideshow_fpp_field_formatter_settings_summary($field, $ins
 function gsb_feature_slideshow_fpp_theme($existing, $type, $theme, $path) {
 
   return array(
-    'gsb_slideshow_fpp_view' => array(
+    'slideshow_view' => array(
       'variables' => array(
         'items' => NULL,
         'delta' => NULL,
@@ -199,7 +199,7 @@ function gsb_feature_slideshow_fpp_theme($existing, $type, $theme, $path) {
 /**
  * Theme function for table view
  */
-function theme_gsb_slideshow_fpp_view($variables) {
+function theme_slideshow_view($variables) {
 
   if ($variables['items'] == null) {
     return;
