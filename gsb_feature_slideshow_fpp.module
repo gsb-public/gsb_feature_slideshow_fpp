@@ -273,29 +273,17 @@ function theme_slideshow_view($variables) {
 
   }
 
-  $class = 'panopoly-spotlight-wrapper ' . $button_style;
-  $class .= (empty($items->field_image_or_video['und'][0]['fid'])) ? " no-image" : "";
+  $class = 'gsb-slider-wrapper ' . $button_style;
+  $class .= (empty( $items->field_image_or_video['und'][0]['fid'])) ? " no-image" : "";
   $output .= '<div class="' . $class . '">';
 
-  $output .= '<div class="panopoly-spotlight-info">';
-  $output .= '<h2>';
-
-  if (!empty($link)) {
-    $output .= '<a href="' . $link . '">';
-  }
+  $output .= '<div class="gsb-slider-content">';
 
   if (!empty($title)) {
-    $output .= $title;
-  }
-  $output .= '<i></i>';
-
-  if (!empty($link)) {
-    $output .= '</a>';
+   $output .= '<h2>' .  $title . '</h2>';
   }
 
-  $output .= '</h2>';
-
-  $output .= '<p>' . $description . '</p>';
+  $output .= '<p>' . $description . '<i></i></p>';
 
   if (!empty($link) && !empty($button_text)) {
     $output .= '<a href="' . $link . '" class="slider-btn ' . $button_style . '">' . $button_text . '</a>';
@@ -304,6 +292,11 @@ function theme_slideshow_view($variables) {
   $output .= '</div>';
   $output .= '</div>';
 
+  if (!empty($link)) {
+    $output .= l(' ', $link, array('attributes' => array('class' => 'slider-link')));
+  }
+
   return $output;
+
 }
 
