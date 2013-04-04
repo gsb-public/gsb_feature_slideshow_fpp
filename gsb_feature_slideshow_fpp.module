@@ -113,30 +113,10 @@ function gsb_feature_slideshow_fpp_field_formatter_info() {
  * Implements hook_field_formatter_view().
  */
 function gsb_feature_slideshow_fpp_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-
-  $element = array();
-
-  $settings = $display['settings'];
-  $formatter = $display['type'];
-
-  drupal_add_library('system', 'ui.tabs');
-
-  // Assemble the tabs header
-  $header = '<ul>';
-  foreach ($items as $delta => $item_data) {
-    $header .= '<li>' . '<a href="#panopoly-spotlight-' . $delta . '">' . ($delta+1) . '</a></li>';
-  }
-  $header .= '</ul>';
-
-  // Assemble the tabs content
-  foreach ($items as $delta => $item_data) {
-    if ($field_collection = field_collection_field_get_entity($item_data)) {
-      $element[$delta]['#markup'] = ($delta == 0) ?
-        $header .
-        theme('slideshow_view', array('items' => $field_collection, 'delta' => $delta, 'settings' => $settings)) :
-        theme('slideshow_view', array('items' => $field_collection, 'delta' => $delta, 'settings' => $settings));
-    }
-  }
+  $element[0] = array(
+    '#theme' => 'slideshow_items',
+    '#items' => $items,
+  );
 
   return $element;
 }
@@ -186,117 +166,55 @@ function gsb_feature_slideshow_fpp_field_formatter_settings_summary($field, $ins
 function gsb_feature_slideshow_fpp_theme($existing, $type, $theme, $path) {
 
   return array(
-    'slideshow_view' => array(
+    'slideshow_items' => array(
       'variables' => array(
-        'items' => NULL,
-        'delta' => NULL,
-        'settings' => NULL,
+        'items' => array(),
       ),
+      'template' => 'templates/slideshow-items',
+    ),
+    'slideshow_slide' => array(
+      'variables' => array(
+        'slide_info' => array(),
+      ),
+      'template' => 'templates/slideshow-slide',
     ),
   );
 }
 
 /**
+ * Theme function for the slideshow.
+ */
+function template_preprocess_slideshow_items(&$variables) {
+  $variables['slides'] = array();
+  // Assemble the slides
+  foreach ($variables['items'] as $item_data) {
+    if ($slide_info = field_collection_field_get_entity($item_data)) {
+      $variables['slides'][] = theme('slideshow_slide', array('slide_info' => $slide_info));
+    }
+  }
+}
+
+/**
  * Theme function for table view
  */
-function theme_slideshow_view($variables) {
+function template_preprocess_slideshow_slide(&$variables) {
 
-  if ($variables['items'] == null) {
-    return;
-  }
+  $slide_info = $variables['slide_info'];
+  $field_collection_view = $slide_info->view();
+  $field_collection_view = reset($field_collection_view['field_collection_item']);
+  $wrapper = entity_metadata_wrapper('field_collection_item', $slide_info);
+  $variables['title'] = $field_collection_view['field_title'];
+  $variables['description'] = $field_collection_view['field_body'];
+  $variables['cta_text'] = $field_collection_view['field_slideshow_item_cta_text'];
+  $variables['link'] = $wrapper->field_link_single->url->value();
+  $variables['classes_array'][] = $wrapper->field_slideshow_item_color->value();
 
-  $items = $variables['items'];
-
-  $title = $items->field_slide_title['und'][0]['value'];
-  $description = $items->field_description['und'][0]['value'];
-  $button_text = $items->field_button_text['und'][0]['value'];
-  $button_style = $items->field_button_style['und'][0]['value'];
-
-  if (module_exists('uuid')) {
-    $image_entity = entity_uuid_load('file', array($items->field_image_or_video['und'][0]['uuid']));
-    $image = file_load(array_pop($image_entity)->fid);
+  if ($file = $wrapper->field_file_single_public->value()) {
+    $variables['media'] = $field_collection_view['field_file_single_public'];
   }
   else {
-    $image = (object) $variables->items;
+    $variables['media'] = '';
+    $variables['classes_array'][] = 'no-media';
   }
-
-  $link = $items->field_slide_link['und'][0]['value'];
-  $settings = $variables['settings'];
-
-  $output = "";
-
-  if (is_array($items->field_image_or_video)) {
-
-    $image = file_view((object) $items->field_image_or_video['und'][0], 'gsb_slideshow');
-
-    $type = $items->field_image_or_video['und'][0]['type'];
-    if ($type == 'image') {
-
-      // Render the image
-
-      $output = render($image);
-
-    }
-    elseif ($type == 'video') {
-
-      // Get the video path.
-
-      $video_path = drupal_realpath($type = $items->field_image_or_video['und'][0]['uri']);
-
-      // If it's a youtube video we need to use the embed url.
-
-      if ($items->field_image_or_video['und'][0]['filemime'] == 'video/youtube') {
-        $video_parts = drupal_parse_url($video_path);
-        if (stristr($video_parts['path'], 'watch')) {
-          $video_path = str_replace('watch', 'embed', $video_parts['path']) . "/" . $video_parts['query']['v'];
-        }
-        $video_path .= '?autoplay=1';
-      }
-
-      // Create the image.
-
-      $img_tag = theme_image_style(array(
-        'style_name' => $image['file']['#style_name'],
-        'path' => $image['file']['#path'],
-        'alt' => $items->field_image_or_video['und'][0]['filename'],
-        'width' => NULL,
-        'height' => NULL
-      ));
-
-      // Print a link wrapper so that it can open in a modal.
-
-      $output = '<div class="field field-type-image field-name-field-gsb-spotlight-media">';
-      $output .=  l($img_tag, $video_path, array('attributes' => array('class' => 'fancybox fancybox.iframe'), 'html' => TRUE));
-      $output .=  '<span class="video-play-icon"></span></div>';
-
-    }
-
-  }
-
-  $class = 'gsb-slider-wrapper ' . $button_style;
-  $class .= (empty( $items->field_image_or_video['und'][0]['fid'])) ? " no-image" : "";
-  $output .= '<div class="' . $class . '">';
-
-  $output .= '<div class="gsb-slider-content">';
-
-  if (!empty($title)) {
-   $output .= '<h2>' .  $title . '</h2>';
-  }
-
-  $output .= '<p>' . $description . '<i></i></p>';
-
-  if (!empty($link) && !empty($button_text)) {
-    $output .= '<a href="' . $link . '" class="slider-btn ' . $button_style . '">' . $button_text . '</a>';
-  }
-
-  $output .= '</div>';
-  $output .= '</div>';
-
-  if (!empty($link)) {
-    $output .= l(' ', $link, array('attributes' => array('class' => 'slider-link')));
-  }
-
-  return $output;
-
 }
 
