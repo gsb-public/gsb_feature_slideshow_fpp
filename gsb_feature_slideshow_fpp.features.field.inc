@@ -299,6 +299,81 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
     ),
   );
 
+  // Exported field: 'field_collection_item-field_slideshow_item-field_slideshow_item_color'.
+  $fields['field_collection_item-field_slideshow_item-field_slideshow_item_color'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_slideshow_item_color',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'purple-button-on-blue' => 'Purple Button on Blue Background',
+          'blue-button-on-orange' => 'Blue Button on Orange Background',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_slideshow_item',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(
+            'conditions' => array(),
+          ),
+          'type' => 'list_default',
+          'weight' => 6,
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'tiny' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_slideshow_item_color',
+      'label' => 'Color',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
+        'type' => 'options_select',
+        'weight' => '6',
+      ),
+      'workbench_access_field' => 0,
+    ),
+  );
+
   // Exported field: 'field_collection_item-field_slideshow_item-field_slideshow_item_cta_text'.
   $fields['field_collection_item-field_slideshow_item-field_slideshow_item_cta_text'] = array(
     'field_config' => array(
@@ -467,75 +542,6 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
     ),
   );
 
-  // Exported field: 'fieldable_panels_pane-slideshow-field_slideshow_color'.
-  $fields['fieldable_panels_pane-slideshow-field_slideshow_color'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_slideshow_color',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          'purple-button-on-blue' => 'Purple Button on Blue Background',
-          'blue-button-on-orange' => 'Blue Button on Orange Background',
-        ),
-        'allowed_values_function' => '',
-      ),
-      'translatable' => '0',
-      'type' => 'list_text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'slideshow',
-      'default_value' => array(
-        0 => array(
-          'value' => 'purple-button-on-blue',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '2',
-        ),
-        'ical' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'fieldable_panels_pane',
-      'field_name' => 'field_slideshow_color',
-      'label' => 'Slideshow Color',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        ),
-        'type' => 'options_select',
-        'weight' => '1',
-      ),
-      'workbench_access_field' => 0,
-    ),
-  );
-
   // Exported field: 'fieldable_panels_pane-slideshow-field_slideshow_item'.
   $fields['fieldable_panels_pane-slideshow-field_slideshow_item'] = array(
     'field_config' => array(
@@ -601,11 +607,11 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Call to Action Text');
+  t('Color');
   t('Description');
   t('Image or Video');
   t('Link');
   t('Slides');
-  t('Slideshow Color');
   t('Title');
 
   return $fields;
