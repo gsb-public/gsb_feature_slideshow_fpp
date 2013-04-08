@@ -49,10 +49,10 @@ function gsb_feature_slideshow_fpp_library() {
     'website' => 'https://github.com/woothemes/FlexSlider',
     'version' => '2.1',
     'js' => array(
-      drupal_get_path('profile', 'gsb_public') . '/libraries/jquery.flexslider-min.js',
+      drupal_get_path('profile', 'gsb_public') . '/libraries/flexslider/jquery.flexslider-min.js' => array(),
     ),
     'css' => array(
-      drupal_get_path('profile', 'gsb_public') . '/libraries/flexslider.css' => array(),
+      drupal_get_path('profile', 'gsb_public') . '/libraries/flexslider/flexslider.css' => array(),
     ),
   );
   $libraries['gsb_feature_slideshow_fpp'] = array(
@@ -60,7 +60,7 @@ function gsb_feature_slideshow_fpp_library() {
     'website' => 'https://github.com/woothemes/FlexSlider',
     'version' => '2.1',
     'js' => array(
-      drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/js/gsb_feature_slideshow_fpp.flexslider.js',
+      drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/js/gsb_feature_slideshow_fpp.flexslider.js' => array(),
     ),
     'dependencies' => array(
       array('gsb_feature_slideshow_fpp', 'flexslider'),
