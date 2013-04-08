@@ -41,6 +41,42 @@ function gsb_feature_slideshow_fpp_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_library()
+ */
+function gsb_feature_slideshow_fpp_library() {
+  $libraries['flexslider'] = array(
+    'title' => 'Flexslider',
+    'website' => 'https://github.com/woothemes/FlexSlider',
+    'version' => '2.1',
+    'js' => array(
+      drupal_get_path('profile', 'gsb_public') . '/libraries/jquery.flexslider-min.js',
+    ),
+    'css' => array(
+      drupal_get_path('profile', 'gsb_public') . '/libraries/flexslider.css' => array(),
+    ),
+  );
+  $libraries['gsb_feature_slideshow_fpp'] = array(
+    'title' => 'GSB Flexslider',
+    'website' => 'https://github.com/woothemes/FlexSlider',
+    'version' => '2.1',
+    'js' => array(
+      drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/js/gsb_feature_slideshow_fpp.flexslider.js',
+    ),
+    'dependencies' => array(
+      array('gsb_feature_slideshow_fpp', 'flexslider'),
+    ),
+  );
+  return $libraries;
+}
+
+function gsb_feature_slideshow_fpp_preprocess_fieldable_panels_pane(&$variables) {
+  if ($variables['elements']['#bundle'] != 'slideshow') {
+    return;
+  }
+  drupal_add_library('gsb_feature_slideshow_fpp', 'gsb_feature_slideshow_fpp');
+}
+
+/**
  * Implements hook_init()
  *
  * Here we tell Drupal about our javascript file
