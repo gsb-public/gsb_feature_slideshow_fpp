@@ -136,8 +136,9 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
           'settings' => array(
             'conditions' => array(),
             'file_view_mode' => 'default',
+            'preview_view_mode' => 'preview',
           ),
-          'type' => 'gsb_field_formatter_default_format',
+          'type' => 'gsb_field_formatter_responsive_video',
           'weight' => '3',
         ),
         'ical' => array(
