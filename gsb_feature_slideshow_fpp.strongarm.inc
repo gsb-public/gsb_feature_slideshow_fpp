@@ -41,7 +41,7 @@ function gsb_feature_slideshow_fpp_strongarm() {
       'display' => array(
         'title' => array(
           'default' => array(
-            'weight' => '-5',
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),

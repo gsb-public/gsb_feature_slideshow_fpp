@@ -32,4 +32,5 @@ features[field][] = field_collection_item-field_slideshow_item-field_slideshow_i
 features[field][] = field_collection_item-field_slideshow_item-field_slideshow_item_cta_text
 features[field][] = field_collection_item-field_slideshow_item-field_title
 features[field][] = fieldable_panels_pane-slideshow-field_slideshow_item
+features[field][] = fieldable_panels_pane-slideshow-field_slideshow_style
 features[variable][] = field_bundle_settings_fieldable_panels_pane__slideshow

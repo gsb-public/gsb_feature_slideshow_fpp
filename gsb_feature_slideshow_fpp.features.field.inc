@@ -606,6 +606,72 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
     ),
   );
 
+  // Exported field: 'fieldable_panels_pane-slideshow-field_slideshow_style'.
+  $fields['fieldable_panels_pane-slideshow-field_slideshow_style'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_slideshow_style',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'cta' => 'CTA',
+          'simple' => 'Simple',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'slideshow',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
+        ),
+        'ical' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'fieldable_panels_pane',
+      'field_name' => 'field_slideshow_style',
+      'label' => 'Style',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'maxlength_js_label' => '',
+        ),
+        'type' => 'options_select',
+        'weight' => '3',
+      ),
+      'workbench_access_field' => 0,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Call to Action Text');
@@ -614,6 +680,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
   t('Image or Video');
   t('Link');
   t('Slides');
+  t('Style');
   t('Title');
 
   return $fields;
