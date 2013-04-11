@@ -50,7 +50,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
             'conditions' => array(),
           ),
           'type' => 'text_default',
-          'weight' => '1',
+          'weight' => '2',
         ),
         'ical' => array(
           'label' => 'above',
@@ -139,7 +139,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
             'preview_view_mode' => 'preview',
           ),
           'type' => 'gsb_field_formatter_responsive_video',
-          'weight' => '3',
+          'weight' => '0',
         ),
         'ical' => array(
           'label' => 'above',
@@ -246,7 +246,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
             'conditions' => array(),
           ),
           'type' => 'link_default',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'ical' => array(
           'label' => 'above',
@@ -340,7 +340,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
             'conditions' => array(),
           ),
           'type' => 'list_default',
-          'weight' => '6',
+          'weight' => '5',
         ),
         'ical' => array(
           'label' => 'above',
@@ -502,7 +502,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
             'conditions' => array(),
           ),
           'type' => 'text_default',
-          'weight' => '5',
+          'weight' => '1',
         ),
         'ical' => array(
           'label' => 'above',
@@ -570,7 +570,7 @@ function gsb_feature_slideshow_fpp_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'gsb_feature_slideshow_fpp',
           'settings' => array(
             'conditions' => array(),
