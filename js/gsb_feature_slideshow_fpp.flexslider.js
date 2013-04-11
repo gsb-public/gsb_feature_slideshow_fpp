@@ -8,6 +8,7 @@ Drupal.behaviors.gsb_feature_slideshow_fpp_flexslider = {
       touch: true,
       slideshowSpeed: 10000,
       animationSpeed: 600,
+      reverse: true,
       selector: '.slideshow-items > li'
     });
   }
