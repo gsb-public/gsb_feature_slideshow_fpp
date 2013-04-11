@@ -90,9 +90,6 @@ function gsb_feature_slideshow_fpp_init() {
   $js_variables = array('gsb_slideshow_settings' => array('rotation_time' => $rotation_time));
 
   drupal_add_js($js_variables, 'setting');
-
-  // Add our custom javascript to the footer to override other things.
-  drupal_add_js(drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/gsb_feature_slideshow_fpp.js', array('scope' => 'footer'));
 }
 
 /**
