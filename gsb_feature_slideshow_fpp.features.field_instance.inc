@@ -193,10 +193,11 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_link_single',
     'label' => 'Link',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'attributes' => array(
         'class' => '',
@@ -213,6 +214,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
         'enable' => 0,
         'insert_plugin' => '',
       ),
+      'rel_remove' => 'default',
       'title' => 'none',
       'title_maxlength' => 128,
       'title_value' => '',
@@ -224,7 +226,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
       'active' => 0,
       'module' => 'link',
       'settings' => array(
-        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_label' => '',
       ),
       'type' => 'link_field',
       'weight' => 3,
