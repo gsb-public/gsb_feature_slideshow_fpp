@@ -298,7 +298,13 @@ function template_preprocess_slideshow_slide(&$variables) {
     ),
   );
   if ($file = $wrapper->field_file_single_public->value()) {
-    $variables['slide']['media'] = $field_collection_view['field_file_single_public'];
+    $media = $field_collection_view['field_file_single_public'];
+    // Because the media formatter for images contains a link, it will not be
+    // properly wrapped below. This pulls out just the image render array.
+    if (isset($media[0]['main']['item']['#bundle']) && $media[0]['main']['item']['#bundle'] == 'image' && isset($media[0]['main']['item']['file'])) {
+      $media = $media[0]['main']['item']['file'];
+    }
+    $variables['slide']['media'] = $media;
   }
   else {
     $variables['classes_array'][] = 'no-media';
@@ -327,9 +333,10 @@ function template_preprocess_slideshow_slide(&$variables) {
   }
 
   try {
-    $link = $wrapper->field_link_single->url->value();
-    $variables['slide']['#prefix'] = '<a href="' . $link . '">';
-    $variables['slide']['#suffix'] = '</a>';
+    if ($link = $wrapper->field_link_single->url->value()) {
+      $variables['slide']['#prefix'] = '<a href="' . $link . '">';
+      $variables['slide']['#suffix'] = '</a>';
+    }
   }
   catch (EntityMetadataWrapperException $e) {
     // Link is optional.
