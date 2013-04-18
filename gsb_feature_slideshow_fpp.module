@@ -294,9 +294,14 @@ function template_preprocess_slideshow_slide(&$variables) {
   $variables['title'] = $field_collection_view['field_title'];
   $variables['description'] = $field_collection_view['field_body'];
   $variables['cta_text'] = $field_collection_view['field_slideshow_item_cta_text'];
-  $variables['link'] = $wrapper->field_link_single->url->value();
+  try {
+    $variables['link'] = $wrapper->field_link_single->url->value();
+  }
+  catch (EntityMetadataWrapperException $e) {
+    // link isn't required, so it can come back null
+    $variables['link'] = '';
+  }
   $variables['classes_array'][] = $wrapper->field_slideshow_item_color->value();
-
   if ($file = $wrapper->field_file_single_public->value()) {
     $variables['media'] = $field_collection_view['field_file_single_public'];
   }
