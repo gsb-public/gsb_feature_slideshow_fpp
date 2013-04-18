@@ -303,25 +303,28 @@ function template_preprocess_slideshow_slide(&$variables) {
   else {
     $variables['classes_array'][] = 'no-media';
   }
-  $variables['slide']['text'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array(
-        'slide-text',
+
+  // Retrieve only the keys we want from the build field collection.
+  $keys = array('field_title', 'field_body', 'field_slideshow_item_cta_text');
+  $contents = array_intersect_key($field_collection_view, array_flip($keys));
+  if (!empty($contents)) {
+    $variables['slide']['text'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'slide-text',
+        ),
       ),
-    ),
-  );
-  $variables['slide']['text']['inner'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array(
-        'inner',
+      'inner' => $contents += array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'inner',
+          ),
+        ),
       ),
-    ),
-    'title' => $field_collection_view['field_title'],
-    'description' => $field_collection_view['field_body'],
-    'cta_text' => $field_collection_view['field_slideshow_item_cta_text'],
-  );
+    );
+  }
 
   try {
     $link = $wrapper->field_link_single->url->value();
