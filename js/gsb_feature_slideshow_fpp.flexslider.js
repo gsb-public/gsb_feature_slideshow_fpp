@@ -6,9 +6,9 @@ Drupal.behaviors.gsb_feature_slideshow_fpp_flexslider = {
       animation: 'slide',
       pauseOnHover: true,
       touch: true,
-      slideshowSpeed: 10000,
       animationSpeed: 600,
-      reverse: true,
+      video: true,
+      slideshow: false,
       selector: '.slideshow-items > li'
     });
   }
