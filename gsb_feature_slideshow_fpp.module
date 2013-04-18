@@ -283,31 +283,52 @@ function template_preprocess_slideshow_items(&$variables) {
 }
 
 /**
- * Theme function for table view
+ * Implements hook_preprocess_HOOK() for slideshow-slide.tpl.php.
  */
 function template_preprocess_slideshow_slide(&$variables) {
-
   $slide_info = $variables['slide_info'];
   $field_collection_view = $slide_info->view();
   $field_collection_view = reset($field_collection_view['field_collection_item']);
   $wrapper = entity_metadata_wrapper('field_collection_item', $slide_info);
-  $variables['title'] = $field_collection_view['field_title'];
-  $variables['description'] = $field_collection_view['field_body'];
-  $variables['cta_text'] = $field_collection_view['field_slideshow_item_cta_text'];
-  try {
-    $variables['link'] = $wrapper->field_link_single->url->value();
-  }
-  catch (EntityMetadataWrapperException $e) {
-    // link isn't required, so it can come back null
-    $variables['link'] = '';
-  }
   $variables['classes_array'][] = $wrapper->field_slideshow_item_color->value();
+  $variables['slide'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => $variables['classes_array'],
+    ),
+  );
   if ($file = $wrapper->field_file_single_public->value()) {
-    $variables['media'] = $field_collection_view['field_file_single_public'];
+    $variables['slide']['media'] = $field_collection_view['field_file_single_public'];
   }
   else {
-    $variables['media'] = '';
     $variables['classes_array'][] = 'no-media';
   }
-}
+  $variables['slide']['text'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'slide-text',
+      ),
+    ),
+  );
+  $variables['slide']['text']['inner'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(
+        'inner',
+      ),
+    ),
+    'title' => $field_collection_view['field_title'],
+    'description' => $field_collection_view['field_body'],
+    'cta_text' => $field_collection_view['field_slideshow_item_cta_text'],
+  );
 
+  try {
+    $link = $wrapper->field_link_single->url->value();
+    $variables['slide']['#prefix'] = '<a href="' . $link . '">';
+    $variables['slide']['#suffix'] = '</a>';
+  }
+  catch (EntityMetadataWrapperException $e) {
+    // Link is optional.
+  }
+}
