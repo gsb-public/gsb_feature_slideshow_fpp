@@ -85,7 +85,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
         'module' => 'gsb_field_formatter',
         'settings' => array(
           'conditions' => array(),
-          'file_view_mode' => 'default',
+          'file_view_mode' => 'gsb_slideshow',
           'preview_view_mode' => 'preview',
         ),
         'type' => 'gsb_field_formatter_responsive_video',
