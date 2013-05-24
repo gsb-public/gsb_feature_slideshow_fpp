@@ -78,7 +78,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
   $field_instances['field_collection_item-field_slideshow_item-field_file_single_public'] = array(
     'bundle' => 'field_slideshow_item',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Recommended size for uploaded images is 600x440.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -110,6 +110,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_file_single_public',
     'label' => 'Image or Video',
@@ -148,6 +149,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
           'media_default--media_browser_my_files' => 0,
           'media_internet' => 0,
           'upload' => 0,
+          'youtube' => 0,
         ),
         'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         'progress_indicator' => 'throbber',
@@ -501,6 +503,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
   t('Description');
   t('Image or Video');
   t('Link');
+  t('Recommended size for uploaded images is 600x440.');
   t('Slides');
   t('Style');
   t('Title');
