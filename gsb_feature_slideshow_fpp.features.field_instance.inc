@@ -78,7 +78,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
   $field_instances['field_collection_item-field_slideshow_item-field_file_single_public'] = array(
     'bundle' => 'field_slideshow_item',
     'deleted' => 0,
-    'description' => 'Recommended size for uploaded images is 600x440.',
+    'description' => 'Recommended size for uploaded images is 627x367.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
