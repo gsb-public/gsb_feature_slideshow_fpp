@@ -35,7 +35,7 @@ function gsb_feature_slideshow_fpp_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '-10',
         ),
       ),
       'display' => array(

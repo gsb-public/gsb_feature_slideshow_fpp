@@ -451,7 +451,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
         'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
       ),
       'type' => 'field_collection_embed',
-      'weight' => 2,
+      'weight' => -9,
     ),
     'workbench_access_field' => 0,
   );
@@ -491,7 +491,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
         'maxlength_js_label' => '',
       ),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => -8,
     ),
     'workbench_access_field' => 0,
   );
