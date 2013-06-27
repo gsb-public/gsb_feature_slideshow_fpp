@@ -84,11 +84,14 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'gsb_field_formatter',
         'settings' => array(
-          'conditions' => array(),
-          'file_view_mode' => 'gsb_slideshow',
-          'preview_view_mode' => 'teaser',
+          'conditions' => array(
+            0 => array(
+              'condition' => '',
+            ),
+          ),
+          'file_view_mode' => 'default',
         ),
-        'type' => 'gsb_field_formatter_responsive_video',
+        'type' => 'gsb_field_formatter_image_or_video_popup',
         'weight' => 0,
       ),
       'ical' => array(
@@ -503,7 +506,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
   t('Description');
   t('Image or Video');
   t('Link');
-  t('Recommended size for uploaded images is 600x440.');
+  t('Recommended size for uploaded images is 627x367.');
   t('Slides');
   t('Style');
   t('Title');
