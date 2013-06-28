@@ -89,7 +89,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
               'condition' => '',
             ),
           ),
-          'file_view_mode' => 'default',
+          'file_view_mode' => 'teaser',
         ),
         'type' => 'gsb_field_formatter_image_or_video_popup',
         'weight' => 0,
