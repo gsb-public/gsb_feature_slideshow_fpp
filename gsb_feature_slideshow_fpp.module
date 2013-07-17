@@ -37,6 +37,13 @@ function gsb_feature_slideshow_fpp_entity_info_alter(&$entity_info) {
     'label' => t('GSB Slideshow'),
     'custom settings' => TRUE,
   );
+  
+  // create a second -small- the slide show view mode
+
+  $entity_info['file']['view modes']['gsb_slideshow_small'] = array(
+    'label' => t('GSB Slideshow Small'),
+    'custom settings' => TRUE,
+  );    
 
 }
 
