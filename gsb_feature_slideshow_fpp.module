@@ -341,7 +341,8 @@ function template_preprocess_slideshow_slide(&$variables) {
 
   try {
     if ($link = $wrapper->field_link_single->url->value()) {
-      $variables['slide']['#prefix'] = '<a href="' . $link . '">';
+      $attributes = $wrapper->field_link_single->attributes->value();
+      $variables['slide']['#prefix'] = '<a href="' . $link . '"' . drupal_attributes($attributes) . '>';
       $variables['slide']['#suffix'] = '</a>';
     }
   }
