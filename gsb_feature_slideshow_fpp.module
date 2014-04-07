@@ -98,12 +98,7 @@ function gsb_feature_slideshow_fpp_preprocess_fieldable_panels_pane(&$variables)
  * Implements hook_form_alter()
  */
 function gsb_feature_slideshow_fpp_form_alter(&$form, &$form_state, $form_id) {
-
   if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form' && $form['#bundle'] == 'slideshow') {
-
-    // add a validation function
-    $form['#validate'][] = "gsb_feature_slideshow_fpp_validate";
-
     foreach ($form['field_gsb_slideshow']['und'] as $key => &$value) {
       if (!is_int($key)) {
         continue;
@@ -123,66 +118,7 @@ function gsb_feature_slideshow_fpp_form_alter(&$form, &$form_state, $form_id) {
         ),
       );
     }
-
   }
-
-}
-
-function gsb_feature_slideshow_fpp_validate($form, &$form_state) {
-
-  // We want to change the text for the url required field to say...
-  // 'Link field is required.' instead of the default which is...
-  // 'URL field is required.' see WPP-905
-
-  $url_required_message = t('Link field is required.');
-
-  $url_name = 'field_slideshow_item][und][0][field_link_single][und][0][url';
-
-  $errors = form_get_errors();
-
-  if ($errors) {
-
-    // Clear errors.
-    form_clear_error();
-
-    // Clear error messages.
-    $error_messages = drupal_get_messages('error');
-
-    // Initialize an array where removed error messages are stored.
-    $removed_messages = array();  
-
-    // Check if there is an error for the url field
-    $url_error = false;
-
-    foreach ($errors as $name => $error_message) {
-      if ($name == $url_name) {
-        $removed_messages[] = $error_message;
-        unset($errors[$name]);
-        $url_error = true;
-      }
-    }
-
-    if ($url_error) {
-      // Now add it back with the new text we want
-      form_set_error($url_name, $url_required_message);
-    }
-
-    // Reinstate remaining errors.
-    foreach ($errors as $name => $error) {
-      form_set_error($name, $error);
-      // form_set_error() calls drupal_set_message(), so we have to filter out
-      // these from the error messages as well.
-      $removed_messages[] = $error;
-    }
-
-    // Reinstate remaining error messages (which, at this point, are messages that
-    // were originated outside of the validation process).
-    foreach (array_diff($error_messages['error'], $removed_messages) as $message) {
-      drupal_set_message($message, 'error');
-    }
-
-  }
-
 }
 
 // Formatter
