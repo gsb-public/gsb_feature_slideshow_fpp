@@ -20,17 +20,13 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'field_collection',
+        'label' => 'hidden',
+        'module' => 'gsb_feature_slideshow_fpp',
         'settings' => array(
-          'add' => 'Add',
           'conditions' => array(),
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'view_mode' => 'full',
+          'view_mode' => 'gsb_slideshow',
         ),
-        'type' => 'field_collection_view',
+        'type' => 'gsb_slideshow_default_format',
         'weight' => 3,
       ),
       'ical' => array(

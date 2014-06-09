@@ -37,14 +37,6 @@ function gsb_feature_slideshow_fpp_entity_info_alter(&$entity_info) {
     'label' => t('GSB Slideshow'),
     'custom settings' => TRUE,
   );
-  
-  // create a second -small- the slide show view mode
-
-  $entity_info['file']['view modes']['gsb_slideshow_small'] = array(
-    'label' => t('GSB Slideshow Small'),
-    'custom settings' => TRUE,
-  );    
-
 }
 
 /**
@@ -81,44 +73,6 @@ function gsb_feature_slideshow_fpp_preprocess_fieldable_panels_pane(&$variables)
     return;
   }
   drupal_add_library('gsb_feature_slideshow_fpp', 'gsb_feature_slideshow_fpp');
-
-  // Add a class based on the selected slideshow style.
-  try {
-    $wrapper = entity_metadata_wrapper('fieldable_panels_pane', $variables['elements']['#element']);
-    $variables['classes_array'][] = 'slideshow-' . $wrapper->field_slideshow_style->value();
-  }
-  catch (EntityMetadataWrapperException $e) {
-    // If the fields are ever missing/renamed, Entity API will throw an
-    // exception instead of using watchdog.
-    watchdog('gsb_feature_slideshow_fpp', 'In @function on line @line: "@message"', array('@function' => __FUNCTION__, '@line' => __LINE__, '@message' => $e->getMessage()), WATCHDOG_ERROR);
-  }
-}
-
-/**
- * Implements hook_form_alter()
- */
-function gsb_feature_slideshow_fpp_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form' && $form['#bundle'] == 'slideshow') {
-    foreach ($form['field_gsb_slideshow']['und'] as $key => &$value) {
-      if (!is_int($key)) {
-        continue;
-      }
-      $form['field_gsb_slideshow']['und'][$key]['field_button_style']['#states'] = array(
-        'visible' => array(
-          ':input[name="field_gsb_slideshow[und][0][field_slideshow_type][und]"]' => array(
-            array('value' => 'standard-slider'),
-          ),
-        ),
-      );
-      $form['field_gsb_slideshow']['und'][$key]['field_button_text']['#states'] = array(
-        'visible' => array(
-          ':input[name="field_gsb_slideshow[und][0][field_slideshow_type][und]"]' => array(
-            array('value' => 'standard-slider'),
-          ),
-        ),
-      );
-    }
-  }
 }
 
 // Formatter
@@ -233,15 +187,14 @@ function template_preprocess_slideshow_slide(&$variables) {
   $field_collection_view = $slide_info->view();
   $field_collection_view = reset($field_collection_view['field_collection_item']);
   $wrapper = entity_metadata_wrapper('field_collection_item', $slide_info);
-  $variables['classes_array'][] = $wrapper->field_slideshow_item_color->value();
+
   $variables['slide'] = array(
     '#type' => 'container',
-    '#attributes' => array(
-      'class' => $variables['classes_array'],
-    ),
+    // At least empty attributes array is required by theme_container.
+    '#attributes' => array(),
   );
-  if ($file = $wrapper->field_file_single_public->value()) {
-    $media = $field_collection_view['field_file_single_public'];
+  if ($file = $wrapper->field_image_single_public->value()) {
+    $media = $field_collection_view['field_image_single_public'];
     // Because the media formatter for images contains a link, it will not be
     // properly wrapped below. This pulls out just the image render array.
     if (isset($media[0]['main']['item']['#bundle']) && $media[0]['main']['item']['#bundle'] == 'image' && isset($media[0]['main']['item']['file'])) {
@@ -254,7 +207,7 @@ function template_preprocess_slideshow_slide(&$variables) {
   }
 
   // Retrieve only the keys we want from the build field collection.
-  $keys = array('field_title', 'field_body', 'field_slideshow_item_cta_text');
+  $keys = array('field_superhead', 'field_text_slide');
   $contents = array_intersect_key($field_collection_view, array_flip($keys));
   if (!empty($contents)) {
     $variables['slide']['text'] = array(
@@ -276,10 +229,15 @@ function template_preprocess_slideshow_slide(&$variables) {
   }
 
   try {
+    if ($link = $wrapper->field_link_superhead->url->value()) {
+      $attributes = $wrapper->field_link_superhead->attributes->value();
+      $variables['slide']['text']['inner']['field_superhead']['#prefix'] = '<a href="' . $link . '"' . drupal_attributes($attributes) . '>';
+      $variables['slide']['text']['inner']['field_superhead']['#suffix'] = '</a>';
+    }
     if ($link = $wrapper->field_link_single->url->value()) {
       $attributes = $wrapper->field_link_single->attributes->value();
-      $variables['slide']['#prefix'] = '<a href="' . $link . '"' . drupal_attributes($attributes) . '>';
-      $variables['slide']['#suffix'] = '</a>';
+      $variables['slide']['text']['inner']['field_text_slide']['#prefix'] = '<a href="' . $link . '"' . drupal_attributes($attributes) . '>';
+      $variables['slide']['text']['inner']['field_text_slide']['#suffix'] = '</a>';
     }
   }
   catch (EntityMetadataWrapperException $e) {
