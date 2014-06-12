@@ -234,6 +234,11 @@ function template_preprocess_slideshow_slide(&$variables) {
       $variables['slide']['text']['inner']['field_superhead']['#prefix'] = '<a href="' . $link . '"' . drupal_attributes($attributes) . '>';
       $variables['slide']['text']['inner']['field_superhead']['#suffix'] = '</a>';
     }
+  }
+  catch (EntityMetadataWrapperException $e) {
+    // Superhead link is optional.
+  }
+  try {
     if ($link = $wrapper->field_link_single->url->value()) {
       $attributes = $wrapper->field_link_single->attributes->value();
       $variables['slide']['text']['inner']['field_text_slide']['#prefix'] = '<a href="' . $link . '"' . drupal_attributes($attributes) . '>';
@@ -241,6 +246,6 @@ function template_preprocess_slideshow_slide(&$variables) {
     }
   }
   catch (EntityMetadataWrapperException $e) {
-    // Link is optional.
+    // Text link is optional.
   }
 }
