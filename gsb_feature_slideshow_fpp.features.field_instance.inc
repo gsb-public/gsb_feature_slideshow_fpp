@@ -40,7 +40,7 @@ function gsb_feature_slideshow_fpp_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_slideshow_slides',
     'label' => 'Slides',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'custom_add_another' => '',
       'custom_remove' => '',
