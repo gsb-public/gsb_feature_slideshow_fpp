@@ -3,13 +3,26 @@
 Drupal.behaviors.gsb_feature_slideshow_fpp_flexslider = {
   attach: function (context, settings) {
     $('.slideshow-wrapper').flexslider({
-      animation: 'slide',
-      pauseOnHover: true,
-      touch: true,
-      animationSpeed: 600,
-      video: true,
+      selector: ".slideshow-items > li",
+      animation: "slide",
       slideshow: false,
-      selector: '.slideshow-items > li'
+      animationSpeed: 600,
+
+      // Usability features
+      pauseOnHover: true,
+      useCSS: true,
+      touch: true,
+      video: false,
+
+      // Primary Controls
+      controlNav: false,
+      directionNav: true,
+
+      // Secondary Navigation
+      keyboard: true,
+
+      // Special properties
+      controlsContainer: ".slide-text-wrapper",
     });
   }
 };
