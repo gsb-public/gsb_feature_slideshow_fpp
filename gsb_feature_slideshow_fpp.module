@@ -230,6 +230,8 @@ function template_preprocess_slideshow_slide(&$variables) {
 
   try {
     if ($link = $wrapper->field_link_superhead->url->value()) {
+      $link_raw = $wrapper->field_link_superhead->raw();
+      $link = $link_raw['display_url'];
       $attributes = $wrapper->field_link_superhead->attributes->value();
       $variables['slide']['text']['inner']['field_superhead']['#prefix'] = '<a class="slide-superhead" href="' . $link . '"' . drupal_attributes($attributes) . '>';
       $variables['slide']['text']['inner']['field_superhead']['#suffix'] = '</a>';
@@ -240,6 +242,8 @@ function template_preprocess_slideshow_slide(&$variables) {
   }
   try {
     if ($link = $wrapper->field_link_single->url->value()) {
+      $link_raw = $wrapper->field_link_single->raw();
+      $link = $link_raw['display_url'];
       $attributes = $wrapper->field_link_single->attributes->value();
       $variables['slide']['text']['inner']['field_text_slide']['#prefix'] = '<a class="slide-text" href="' . $link . '"' . drupal_attributes($attributes) . '>';
       $variables['slide']['text']['inner']['field_text_slide']['#suffix'] = '</a>';
