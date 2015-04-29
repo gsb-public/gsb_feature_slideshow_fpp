@@ -229,11 +229,13 @@ function template_preprocess_slideshow_slide(&$variables) {
   }
 
   try {
-    if ($link = $wrapper->field_link_superhead->url->value()) {
-      $link_raw = $wrapper->field_link_superhead->raw();
-      $link = $link_raw['display_url'];
+    if ($link_raw = $wrapper->field_link_superhead->raw()) {
       $attributes = $wrapper->field_link_superhead->attributes->value();
-      $variables['slide']['text']['inner']['field_superhead']['#prefix'] = '<a class="slide-superhead" href="' . $link . '"' . drupal_attributes($attributes) . '>';
+      $link = l('', $link_raw['url'], array(
+        'query' => $link_raw['query'],
+        'attributes' => array_merge($attributes, array('class' => 'slide-superhead')),
+      ));
+      $variables['slide']['text']['inner']['field_superhead']['#prefix'] = str_replace('</a>', '', $link);
       $variables['slide']['text']['inner']['field_superhead']['#suffix'] = '</a>';
     }
   }
@@ -241,11 +243,13 @@ function template_preprocess_slideshow_slide(&$variables) {
     // Superhead link is optional.
   }
   try {
-    if ($link = $wrapper->field_link_single->url->value()) {
-      $link_raw = $wrapper->field_link_single->raw();
-      $link = $link_raw['display_url'];
+    if ($link_raw = $wrapper->field_link_single->raw()) {
       $attributes = $wrapper->field_link_single->attributes->value();
-      $variables['slide']['text']['inner']['field_text_slide']['#prefix'] = '<a class="slide-text" href="' . $link . '"' . drupal_attributes($attributes) . '>';
+      $link = l('', $link_raw['url'], array(
+        'query' => $link_raw['query'],
+        'attributes' => array_merge($attributes, array('class' => 'slide-text')),
+      ));
+      $variables['slide']['text']['inner']['field_text_slide']['#prefix'] = str_replace('</a>', '', $link);
       $variables['slide']['text']['inner']['field_text_slide']['#suffix'] = '</a>';
     }
   }
