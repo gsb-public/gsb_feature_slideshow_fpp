@@ -264,7 +264,7 @@ function template_preprocess_slideshow_slide(&$variables) {
 function gsb_feature_slideshow_fpp_form_alter(&$form, &$form_state, $form_id) {
   // Only manipulate the fieldable panel pane form and the  one at that.
   if (($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form' || $form_id == 'fieldable_panels_panes_entity_edit_form') && $form['#bundle'] == 'slideshow') {
-    $form['instructions']['#markup'] = '<a href="https://onegsb.stanford.edu/group/gsb-web-authors" target="_blank">View slideshow standards</a> for guidance on using this feature.';
+    $form['instructions']['#markup'] = '<a href="https://courses.gsb.stanford.edu/courses/656" target="_blank">View slideshow standards</a> for guidance on using this feature.';
     $form['instructions']['#weight'] = -5;
   }
 }
