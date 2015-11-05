@@ -3,10 +3,11 @@
 Drupal.behaviors.gsb_feature_slideshow_fpp_flexslider = {
   attach: function (context, settings) {
     $('.slideshow-wrapper').flexslider({
-      selector: ".slideshow-items > li",
-      animation: "slide",
-      slideshow: false,
+      selector: '.slideshow-items > li',
+      animation: 'slide',
+      animationLoop: true,
       animationSpeed: 600,
+      slideshow: false,
 
       // Usability features
       pauseOnHover: true,
@@ -22,7 +23,7 @@ Drupal.behaviors.gsb_feature_slideshow_fpp_flexslider = {
       keyboard: true,
 
       // Special properties
-      controlsContainer: ".slide-text-wrapper",
+      controlsContainer: '.slide-text-wrapper',
     });
   }
 };
