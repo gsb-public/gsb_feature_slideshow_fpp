@@ -11,7 +11,7 @@ Drupal.behaviors.gsb_feature_slideshow_fpp_flexslider = {
       // Usability features
       pauseOnHover: true,
       useCSS: true,
-      touch: true,
+      touch: false,
       video: false,
 
       // Primary Controls
