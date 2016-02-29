@@ -10,7 +10,8 @@
 function gsb_feature_slideshow_fpp_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'fieldable_panels_pane-slideshow-field_slideshow_slides'
+  // Exported field_instance:
+  // 'fieldable_panels_pane-slideshow-field_slideshow_slides'.
   $field_instances['fieldable_panels_pane-slideshow-field_slideshow_slides'] = array(
     'bundle' => 'slideshow',
     'custom_add_another' => '',
