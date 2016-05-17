@@ -53,15 +53,28 @@ function gsb_feature_slideshow_fpp_library() {
       drupal_get_path('profile', 'gsb_public') . '/libraries/flexslider/flexslider.css' => array(),
     ),
   );
+  $libraries['slick'] = array(
+    'title' => 'Slick',
+    'website' => 'http://kenwheeler.github.io/slick',
+    'version' => '1.6',
+    'js' => array(
+      drupal_get_path('profile', 'gsb_public') . '/libraries/slick/slick/slick.js' => array(),
+    ),
+    'css' => array(
+      drupal_get_path('profile', 'gsb_public') . '/libraries/slick/slick/slick.css' => array(),
+    ),
+  );
   $libraries['gsb_feature_slideshow_fpp'] = array(
     'title' => 'GSB Flexslider',
     'website' => 'https://github.com/woothemes/FlexSlider',
     'version' => '2.1',
     'js' => array(
-      drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/js/gsb_feature_slideshow_fpp.flexslider.js' => array(),
+      //drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/js/gsb_feature_slideshow_fpp.flexslider.js' => array(),
+      drupal_get_path('module', 'gsb_feature_slideshow_fpp') . '/js/gsb_feature_slideshow_fpp.slick.js' => array(),
     ),
     'dependencies' => array(
-      array('gsb_feature_slideshow_fpp', 'flexslider'),
+      //array('gsb_feature_slideshow_fpp', 'flexslider'),
+      array('gsb_feature_slideshow_fpp', 'slick'),
     ),
   );
   return $libraries;
@@ -231,8 +244,9 @@ function template_preprocess_slideshow_slide(&$variables) {
   try {
     if ($link_raw = $wrapper->field_link_superhead->raw()) {
       $attributes = $wrapper->field_link_superhead->attributes->value();
+      $query = !empty($link_raw['query']) ? $link_raw['query'] : '';
       $link = l('', $link_raw['url'], array(
-        'query' => $link_raw['query'],
+        'query' => $query,
         'attributes' => array_merge($attributes, array('class' => 'slide-superhead')),
       ));
       $variables['slide']['text']['inner']['field_superhead']['#prefix'] = str_replace('</a>', '', $link);
@@ -245,8 +259,9 @@ function template_preprocess_slideshow_slide(&$variables) {
   try {
     if ($link_raw = $wrapper->field_link_single->raw()) {
       $attributes = $wrapper->field_link_single->attributes->value();
+      $query = !empty($link_raw['query']) ? $link_raw['query'] : '';
       $link = l('', $link_raw['url'], array(
-        'query' => $link_raw['query'],
+        'query' => $query,
         'attributes' => array_merge($attributes, array('class' => 'slide-text')),
       ));
       $variables['slide']['text']['inner']['field_text_slide']['#prefix'] = str_replace('</a>', '', $link);
