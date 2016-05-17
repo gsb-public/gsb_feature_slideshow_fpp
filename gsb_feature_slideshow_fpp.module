@@ -200,6 +200,9 @@ function template_preprocess_slideshow_slide(&$variables) {
   $field_collection_view = reset($field_collection_view['field_collection_item']);
   $wrapper = entity_metadata_wrapper('field_collection_item', $slide_info);
 
+  $slide_color = $wrapper->field_slideshow_style->value();
+  $slide_color = ($slide_color == null) ? 'white' : $slide_color;
+
   $variables['slide'] = array(
     '#type' => 'container',
     // At least empty attributes array is required by theme_container.
@@ -227,6 +230,7 @@ function template_preprocess_slideshow_slide(&$variables) {
       '#attributes' => array(
         'class' => array(
           'slide-text-wrapper',
+          'slide-color-' . $slide_color,
         ),
       ),
       '#weight' => 10,
