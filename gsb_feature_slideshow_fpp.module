@@ -234,11 +234,19 @@ function template_preprocess_slideshow_slide(&$variables) {
         ),
       ),
       '#weight' => 10,
-      'inner' => $contents += array(
+      'inner' => array(
         '#type' => 'container',
         '#attributes' => array(
           'class' => array(
-            'inner',
+            'inner-wrapper',
+          ),
+        ),
+        'text-wrapper' => $contents += array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'text-wrapper',
+            ),
           ),
         ),
       ),
@@ -253,8 +261,8 @@ function template_preprocess_slideshow_slide(&$variables) {
         'query' => $query,
         'attributes' => array_merge($attributes, array('class' => 'slide-superhead')),
       ));
-      $variables['slide']['text']['inner']['field_superhead']['#prefix'] = str_replace('</a>', '', $link);
-      $variables['slide']['text']['inner']['field_superhead']['#suffix'] = '</a>';
+      $variables['slide']['text']['inner']['text-wrapper']['field_superhead']['#prefix'] = str_replace('</a>', '', $link);
+      $variables['slide']['text']['inner']['text-wrapper']['field_superhead']['#suffix'] = '</a>';
     }
   }
   catch (EntityMetadataWrapperException $e) {
@@ -268,8 +276,8 @@ function template_preprocess_slideshow_slide(&$variables) {
         'query' => $query,
         'attributes' => array_merge($attributes, array('class' => 'slide-text')),
       ));
-      $variables['slide']['text']['inner']['field_text_slide']['#prefix'] = str_replace('</a>', '', $link);
-      $variables['slide']['text']['inner']['field_text_slide']['#suffix'] = '</a>';
+      $variables['slide']['text']['inner']['text-wrapper']['field_text_slide']['#prefix'] = str_replace('</a>', '', $link);
+      $variables['slide']['text']['inner']['text-wrapper']['field_text_slide']['#suffix'] = '</a>';
     }
   }
   catch (EntityMetadataWrapperException $e) {
