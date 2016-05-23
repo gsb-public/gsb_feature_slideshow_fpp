@@ -5,6 +5,9 @@ Drupal.behaviors.gsb_feature_slideshow_fpp_slick = {
     if ($('.panels-ipe-editing').length > 0) {
       return;
     }
+    if ($('#page-manager-edit').length > 0) {
+      return;
+    }
     $('.slideshow-wrapper').slick({
       swipe: false,
       easing: 'slide',
