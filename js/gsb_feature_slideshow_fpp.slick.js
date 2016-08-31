@@ -8,12 +8,14 @@ Drupal.behaviors.gsb_feature_slideshow_fpp_slick = {
     if ($('#page-manager-edit').length > 0) {
       return;
     }
-    $('.slideshow-wrapper').slick({
-      swipe: false,
-      easing: 'slide',
-      prevArrow: '<a class="flex-prev" href="#">Previous</a>',
-      nextArrow: '<a class="flex-next" href="#">Next</a>',
-    });
+    if (!$('.slideshow-wrapper').hasClass('slick-initialized')) {
+      $('.slideshow-wrapper').slick({
+        swipe: false,
+        easing: 'slide',
+        prevArrow: '<a class="flex-prev" href="#">Previous</a>',
+        nextArrow: '<a class="flex-next" href="#">Next</a>',
+      });
+    }
   }
 };
 
