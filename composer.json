@@ -1,0 +1,41 @@
+{
+  "name": "drupal/gsb_feature_slideshow_fpp",
+  "description": "GSB Feature Slideshow FPP",
+  "license": "Apache-2.0",
+  "repositories": [
+    {
+        "type": "package",
+        "package": {
+            "name": "woothemes/FlexSlider",
+            "version": "master",
+            "type": "drupal-gsb-library", 
+            "dist": {
+                "url": "https://github.com/woothemes/FlexSlider/archive/version/2.1.zip",
+                "type": "zip"
+            }
+        }
+    },
+    {
+        "type": "package",
+        "package": {
+            "name": "kenwheeler/slickr",
+            "version": "master",
+            "type": "drupal-gsb-library", 
+            "dist": {
+                "url": "https://github.com/kenwheeler/slick/archive/1.6.0.zip",
+                "type": "zip"
+            }
+        }
+    }
+  ],  
+  "require": {
+    "php": ">=5.3.0",
+    "woothemes/FlexSlider": "master",
+    "kenwheeler/slickr": "master"
+  },
+  "extra": {
+    "installer-paths": {
+      "web/profiles/gsb_public/libraries/{$name}/": ["type:drupal-gsb-library"]
+    }
+  } 
+}
