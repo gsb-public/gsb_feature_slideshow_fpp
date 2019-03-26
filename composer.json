@@ -30,8 +30,8 @@
   ],  
   "require": {
     "php": ">=5.3.0",
-    "woothemes/FlexSlider": "master",
-    "kenwheeler/slickr": "master"
+    "woothemes/flexslider": "master",
+    "kenwheeler/slick": "master"
   },
   "extra": {
     "installer-paths": {
