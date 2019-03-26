@@ -6,7 +6,7 @@
     {
         "type": "package",
         "package": {
-            "name": "woothemes/FlexSlider",
+            "name": "woothemes/flexslider",
             "version": "master",
             "type": "drupal-gsb-library", 
             "dist": {
@@ -18,7 +18,7 @@
     {
         "type": "package",
         "package": {
-            "name": "kenwheeler/slickr",
+            "name": "kenwheeler/slick",
             "version": "master",
             "type": "drupal-gsb-library", 
             "dist": {
